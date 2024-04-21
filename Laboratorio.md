@@ -6,8 +6,10 @@
 
 Segue o código em anexo:
 
+
 int main(void)
 {
+    
     // Configurar o pino PA0 como entrada
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN; GPIOA->MODER &= ~GPIO_MODER_MODER0;
 
@@ -48,7 +50,7 @@ int main(void)
 Segue o código em anexo:
 
   
-  int main(void)
+int main(void)
 {
     // Configurar o pino PA0 como entrada
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN; GPIOA->MODER &= ~GPIO_MODER_MODER0;
