@@ -6,6 +6,7 @@
 
 Segue o código em anexo:
 
+  
   int main(void)
 {
     // Configurar o pino PA0 como entrada
@@ -34,6 +35,7 @@ Segue o código em anexo:
 
 Segue o código em anexo:
 
+  
   int main(void)
 {
     // Configurar o pino PA0 como entrada
