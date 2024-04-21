@@ -6,8 +6,7 @@
 
 Segue o código em anexo:
 
-  
-  int main(void)
+int main(void)
 {
     // Configurar o pino PA0 como entrada
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN; GPIOA->MODER &= ~GPIO_MODER_MODER0;
@@ -15,18 +14,31 @@ Segue o código em anexo:
     // Configurar o pino PC13 como saída
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN; GPIOC->MODER |= GPIO_MODER_MODER13_0;
 
+    // Variável para controlar o estado do LED
+    int ledLigado = 0;
+
     while (1)
     {
         // Ler o estado do botão (PA0)
         if (GPIOA->IDR & GPIO_IDR_IDR_0)
         {
-            // Botão pressionado: acender o LED (PC13)
-            GPIOC->BSRR = GPIO_BSRR_BS_13;
-        }
-        else
-        {
-            // Botão solto: apagar o LED (PC13)
-            GPIOC->BSRR = GPIO_BSRR_BR_13;
+            // Botão pressionado: alternar o estado do LED
+            if (ledLigado)
+            {
+                GPIOC->BSRR = GPIO_BSRR_BR_13; // Apagar o LED
+                ledLigado = 0;
+            }
+            else
+            {
+                GPIOC->BSRR = GPIO_BSRR_BS_13; // Acender o LED
+                ledLigado = 1;
+            }
+
+            // Aguardar um breve intervalo para evitar leituras múltiplas
+            for (volatile int i = 0; i < 100000; ++i)
+            {
+                // Espera
+            }
         }
     }
 }
